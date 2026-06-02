@@ -46,30 +46,12 @@ Prueba automatizada con Cypress para validar el flujo de búsqueda de productos 
 ```bash
 npm install
 
-Consideraciones técnicas
+## GitHub Actions
 
-Durante la automatización se identificó que Liverpool carga múltiples recursos externos de analítica, tracking, personalización, encuestas y contenido dinámico.
+Successful workflow execution:
 
-Por esta razón, no se utilizó cy.intercept('**'), ya que capturaba tráfico no relacionado con el flujo principal y generaba ruido en la prueba, incluyendo respuestas 503, 404 o scripts externos que no forman parte de la funcionalidad evaluada.
+https://github.com/AmyD0306/liverpool-qa-challenge/actions/runs/26849289348
 
-También se identificó que la validación estricta de orden ascendente no es confiable, ya que las tarjetas pueden mostrar múltiples precios, descuentos, promociones o variantes, y el sitio puede reordenar resultados después de aplicar filtros.
-
-Como mejora propuesta, la validación UI vs API debería realizarse únicamente contra la petición interna responsable del listado de productos, observada como /getPlpFilter. Sin embargo, al tratarse de una API interna no documentada y de un sitio externo con contenido dinámico, no se recomienda bloquear la prueba por una comparación estricta producto por producto.
-
-La prueba final prioriza estabilidad, reproducibilidad y validación funcional del flujo principal.
+The workflow runs Cypress tests in headless mode, generates a Mochawesome HTML report, and uploads it as an artifact.
 
 
-3. Guarda y cierra.
-
-4. Verifica que exista:
-
-```bash
-dir
-
-Debe aparecer:
-
-README.md
-Súbelo a Git:
-git add README.md
-git commit -m "Add project README"
-git push
